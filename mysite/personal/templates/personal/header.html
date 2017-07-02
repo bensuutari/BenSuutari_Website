@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Benjamin Suutari</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<meta charset="utf-8" />
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'personal/css/bootstrap.min.css' %}" type = "text/css"/>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="shortcut icon" href="{% static 'personal/img/ActionPotential.png' %}"/>
+	<link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet'  type='text/css'>
+	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+	
+	<style type="text/css">
+		html,
+		body {
+			overflow-y: visible;/*auto*/
+			padding-top: 5px;
+		 	height:100%
+		}
+
+
+		p {
+    	font-size: 18px;
+		}
+    	.navbar-default {
+    	/*background-image: url('http://upload.wikimedia.org/wikipedia/commons/6/6b/Bubble_3.jpg');*/
+    	background-color: #000000;/*5d6170 540887(purple)*/
+    	border-color: #E7E7E7;
+    	font-size: 25px;
+   		}
+
+		.navbar-default .navbar-nav > li > a {
+    	color: #ffffff;
+    	display: inline-block;
+    	float: none;
+    	vertical-align: top;
+		}
+
+
+		.navbar-default .navbar-brand {
+    	color: #ffffff;
+    	font-size: 30px;/*25px*/
+		}
+
+
+		.navbar-default .navbar-nav > li {
+    	display: inline-block;
+    	float:none;
+		}
+
+		.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    	background-color: #E7E7E7;
+    	color: #555555;
+		}
+		.changeFont{
+        font-family: 'VT323' !important;
+    	}
+
+    	.fixed-top-2 {
+    	margin-top: 56px;
+		}
+
+		.btn {
+	    background: #000000;/*#0099cc*/
+	    color: #ffffff;
+	    font-size:20px;
+		}
+
+		.caret{ 
+		color: white; 
+		border-top: 8px solid;
+		}
+
+    	.rotateimg90 {
+		  -webkit-transform:rotate(90deg);
+		  -moz-transform: rotate(90deg);
+		  -ms-transform: rotate(90deg);
+		  -o-transform: rotate(90deg);
+		  transform: rotate(90deg);
+		}
+
+	</style>
+
+
+</head>
+<body class="body" style="background-color:#ffffff">
+	<!--Facebook Share -->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+	fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<!--Facebook Share -->
+	<!-- The Navbar Start-->
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/"><b>Ben Suutari</b><span><img src="{% static 'personal/img/SingleAPThicc_white.png' %}" style="max-height:33px;" alt="face"></span></a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	         <!-- <li><a href="/"><b>Home</b></a></li> -->
+	        <li><a href="/blog/"><b>Blog</b></a></li>
+			<li><a href="/projects/"><b>Projects</b></a></li>
+	        <li><a href="/contact/"><b>Contact</b></a></li>
+	        <li><a href="/about/"><b>About</b></a></li>
+
+	         <!--
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+	          
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Action</a></li>
+	            <li><a href="#">Another action</a></li>
+	            <li><a href="#">Something else here</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#">One more separated link</a></li>
+	          </ul>
+
+	        </li>
+	    -->
+	      </ul>
+	      <!--
+	      <form class="navbar-form navbar-left">
+	        <div class="form-group">
+	          <input type="text" class="form-control" placeholder="Search">
+	        </div>
+	        <button type="submit" class="btn btn-default">Submit</button>
+	      </form>
+	  	-->
+	      <ul class="nav navbar-nav navbar-right">
+			<a href="https://github.com/bensuutari" target="blank"><i class="fa fa-github fa-2x" aria-hidden="true" style="color:white"></i></a>
+			<a href="https://www.linkedin.com/in/benjamin-suutari-22a0262b/" target="blank"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true" style="color:white"></i></a>
+			<a href="mailto:ben.suutari@gmail.com" target="blank"><i class="fa fa-envelope fa-2x" aria-hidden="true" style="color:white"></i></a>
+	        <!--<li><a href="#">Link</a></li> -->
+
+	        <!--
+	        <a href="https://github.com/moejamin" target="blank"><i class="fa fa-github fa-2x" aria-hidden="true" style="color:black"></i></a>
+	        <a href="https://www.linkedin.com/in/benjamin-suutari-22a0262b/" target="blank"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true" style="color:black"></i></a>
+	        <a href="mailto:ben.suutari@gmail.com" target="blank"><i class="fa fa-envelope fa-2x" aria-hidden="true" style="color:black"></i></a>
+	    	-->
+
+
+	        <!--
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Action</a></li>
+	            <li><a href="#">Another action</a></li>
+	            <li><a href="#">Something else here</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	          </ul>
+	        </li>
+	    	-->
+	    	
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+	<!-- The Navbar End-->
+
+	<div class="container-fluid" style="min-height:95%; ">
+
+		  <div class="col-md-20">
+		  
+			<div class='container'>
+			<br><br>
+				<left>
+				   {% block content %}
+				   {% endblock %}
+				</left>	
+			</div>
+		  </div>
+		</div> 
+	</div>
+	<!--
+	<div class="container-fluid">
+		<nav class="navbar-fixed-bottom">
+			<ul class="nav navbar-nav navbar-right" style='margin-right:15px'>
+		        <a href="https://github.com/moejamin" target="blank"><i class="fa fa-github fa-3x" aria-hidden="true" style="color:black"></i></a>
+		        <a href="https://www.linkedin.com/in/benjamin-suutari-22a0262b/" target="blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true" style="color:black"></i></a>
+		        <a href="mailto:ben.suutari@gmail.com" target="blank"><i class="fa fa-envelope fa-3x" aria-hidden="true" style="color:black"></i></a>
+	    	</ul>
+		</nav>
+	</div>
+	-->
+	<br>
+	<br>
+	<br>
+	<footer>
+		<div class="container-fluid" style='margin-left:15px'>
+				<center><p><b>&copy 2017 Benjamin Suutari </b></p></center>
+		</div>
+	</footer>
+	
+	
+	
+</body>
+</html>

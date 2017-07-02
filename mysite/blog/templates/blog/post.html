@@ -1,0 +1,19 @@
+{% extends "personal/header.html" %}
+{% block content %}
+	<br>
+	<br>
+	<h2><b>{{post.title}}</b></h2>
+	<h6>{{post.dat}}</h6>
+	<br>
+	<br>
+	{{post.body|safe|linebreaks}}
+	<a href="https://twitter.com/share" class="..." data-url="http://reddit.com">
+	<i class="fa fa-twitter"></i> Share on Twitter</i>
+	</a>
+	<br>
+	<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://reddit.com&amp;title=Thisisatest&amp;source=http://reddit.com/" class="..." data-url="http://reddit.com">
+	<i class="fa fa-linkedin"></i> Share on LinkedIn</i>
+	</a>
+	<br>
+	<div class="fb-share-button" data-href="https://reddit.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Freddit.com%2F&amp;src=sdkpreparse">Share</a></div>
+{% endblock %}

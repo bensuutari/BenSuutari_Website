@@ -1,0 +1,85 @@
+{% extends "personal/header.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <div class="col-md-20">
+    <br>
+      <left>
+        <h2><b>Projects</b></h2>
+      </left>
+  </div>
+</div><hr>
+
+<!--
+<nav aria-label="Project Page Navigation">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+-->
+<!--<h3><b>Jump To Project:</b></h3>          -->
+
+<div class="container">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><b>Jump to Project</b>
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Neuronal Biophys GUI</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Twitter Sentiment</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">PDF Summarizer</a></li>
+
+    </ul>
+  </div>
+</div>
+
+
+<!--
+<a href="#"><h5>Neuronal Biophysics GUI</h5></a>
+<a href="#"><h5>Twitter Sentiment</h5></a>
+<a href="#"><h5>PDF Summarizer</h5></a>
+<a href="#"><h5>ANN Facial Recognition</h5></a>
+<a href="#"><h5>Neuronal Biophysics GUI</h5></a>
+<a href="#"><h5>Twitter Sentiment</h5></a>
+<a href="#"><h5>PDF Summarizer</h5></a>
+<a href="#"><h5>ANN Facial Recognition</h5></a>
+-->
+<!--
+<div class="row">
+  <div class="col">
+    <div id="mySidenav" class="sidenav">
+      <a href="#"><p>Neuronal Biophysics GUI</p></a>
+      <a href="#"><p>Twitter Sentiment</p></a>
+      <a href="#"><p>PDF Summarizer</p></a>
+      <a href="#"><p>ANN Facial Recognition</p></a>
+    </div>
+  </div>
+  <div class="col">
+    <div id="mySidenav" class="sidenav">
+      <a href="#"><p>Neuronal Biophysics GUI</p></a>
+      <a href="#"><p>Twitter Sentiment</p></a>
+      <a href="#"><p>PDF Summarizer</p></a>
+      <a href="#"><p>ANN Facial Recognition</p></a>
+    </div>
+  </div>
+</div>
+-->
+
+
+<h1><b>GUI for Teaching Principles of Neuronal Biophysics</b></h1>
+<img src="{% static 'personal/img/RunScreen.png' %}" class="img-rounded" style='max-height:300px;' alt="face">
+<p><b>Source Code: </b> <a href="https://github.com/moejamin/Neuron_for_Teaching_GUI">Teaching GUI for Basic Biophysics of Neurons</a></p>
+<h3><b>Description:</b></h3>
+<p>TESTING JUMP TO
+</p>
+<p>
+TESTING JUMP TO
+</p>
+<p>
+TESTING
+</p>
+
+{% endblock %}

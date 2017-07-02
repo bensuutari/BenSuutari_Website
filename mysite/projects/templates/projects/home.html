@@ -1,0 +1,233 @@
+{% extends "personal/header.html" %}
+{% load static %}
+{% block content %}
+<nav class="navbar navbar-fixed-top fixed-top-2">
+  <div class="container">
+    <div class="col-md-20"><span class="pull-right">
+      <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><b>Jump to Project</b>
+      <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#CNNfacerec">CNN for Facial Recognition</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#FacialRec">Perceptron for Facial Recognition</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#NeuronBiophys">Neuronal Biophys GUI</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#Twitterbot">Twitter Sentiment Analysis</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#Redditbot">Reddit Sentiment Analysis</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#PDFsummarize">PDF Summarizer</a></li>         
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#KawaiiMe">KawaiiMe</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#biogibbs">Gibbs Sampler for Bioinformatics</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#MCMC5HT3NN">MCMC Neural Network</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#thiswebsite">This Website</a></li>
+          
+          
+          
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id ="Top">
+
+<div class="container">
+  <div class="col-md-20">
+    <br>
+      <left>
+        <h1><b>Projects</b></h1>
+      </left>
+  </div>
+</div><hr>
+</div>
+<div id="CNNfacerec">
+<br>
+<br>
+<h2><b>A Convolutional Neural Network in Tensorflow for Facial Recognition</b></h2>
+<h3><b>Source Code: <a href="https://github.com/bensuutari/CNN_Facial_Recognition" target="_blank">Convolutional Neural Network for Facial Recognition</a></b></h3>
+<h3><b>Tools:  </b>Python, TensorFlow, Python Image Library, Numpy, The Yale Face Database (obtained here: <a href="http://vision.ucsd.edu/content/yale-face-database" target="_blank">http://vision.ucsd.edu/content/yale-face-database</a>
+)</h3>
+<h3><b>Description:</b></h3>
+<p>Here I have constructed a convolutional neural network (CNN) using <a href="https://www.tensorflow.org/" target="_blank">Tensorflow</a> and applied it to a facial recognition task.  Getting sufficient data for facial recogntion tasks is tough if you aren't Google or Facebook so I've opted to use <a href="http://cvc.cs.yale.edu/cvc/projects/yalefaces/yalefaces.html" target="_blank">Yale's Face Database</a> for testing my network.</p> 
+<br>
+<p>Here's some examples of images from one of the subjects:</p>
+<center><img src="{% static 'personal/img/yale_face_example.png' %}" class="img-rounded" style='max-height:300px;' alt="face"></center>
+<p>Admittedly, these images are quite different from those one would encounter in the wild: they are all from the same perspective, same size and don't have a lot of noise to confuse the network. However, the faces do have different facial expressions, illumination and faces with glasses on are included.  I chose this database becaues it was easily accessible and <i>slightly</i> noisy.  One of the main drawbacks to this dataset is that it's quite small, with 15 subjects and only 11 images per subject.  Despite all of this, I thought I'd see how a CNN performed on a realtively clean dataset with very little data.</p>
+<br>
+<p>To construct the model I used two convolution layers with their respective pooling and a fully connected layer. The first convolution layer has 32 units, the second has 64 units and the fully connected layer has 1024 units.  Each of the convolution layers has been set to take 5x5 pixel patches and the pooling layers take strides of 2 pixels across the image.  The optimization utilizes dropout with an 80% keep rate to avoid overfitting (more on dropout later).  Optimization of the connections weights is performed using the Adam Optimizer.  As the dataset was so small no batch processing was used. </p>
+<br>
+<p>I broke the data into roughly a 80/20 split for training and testing by using 2 randomly selected images from each subject for testing and using the rest of the data from each subject for training.  After running the CNN for 200 epochs I obtained the following loss and testing set accuracy:</p>
+<center><span><img src="{% static 'personal/img/CNNaccuracy_graph.png' %}" class="img-rounded" style='max-height:300px;' alt="face"><img src="{% static 'personal/img/CNNloss_graph.png' %}" class="img-rounded" style='max-height:300px;' alt="face"></span></center>
+<br>
+<p>As you can see, the CNN approaches its optimal parameters at around 100 epochs and then plateaus at a testing set accuracy of about 90%.  Not too bad for a pretty simple CNN!  
+</p>
+<br>
+<p>I'd also like to point out how including dropout to the CNN affects the accuracy of a solution:</p>
+<center><img src="{% static 'personal/img/CNNaccuracy_graph_dropoutvsnodropout.png' %}" class="img-rounded" style='max-height:300px;' alt="face"></center>
+<p>Without dropout the solution converges more quickly but the final accuracy against the test set is lower.  Since dropout is essentially removing units during each epoch the solution converges slower because units that may have been optimized in a previous step may be randomly removed but the final solution is better because the network avoids overfitting on the training set.  Pretty cool!  You can read more about dropout here:<a href="https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf" target="_blank">https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf</a></p>
+<br>
+
+<div id="FacialRec">
+<br>
+<br>
+<h2><b>Facial Recognition with a Simple Perceptron</b></h2>
+<h3><b>Source Code: <a href="https://github.com/bensuutari/NNfacialrecognition" target="_blank">Facial Recognition with a Simple Perceptron</a></b></h3>
+<h3><b>Tools:  </b>Python, Numpy, SciPy</h3>
+<h3><b>Description:</b></h3>
+<p>This was one of the first machine learning projects that I created.  I was taking Andrew Ng's Machine Learning course on coursera (<a href="https://www.coursera.org/learn/machine-learning">https://www.coursera.org/learn/machine-learning</a>) and I learned how to make a simple perceptron to categorize hand-written digits from the MNIST dataset.  I decided to take this simple neural network and see how successful it was at categorizing faces.  I started by trying to categorize two different faces, Cameron Diaz and Jennifer Aniston and found that it was actually 85% accurate!  This was a huge revelation to me.  I could make a network of artificial neurons to do computer vision!  In hindsight the network is quite primitive and likely overtrained but I'm going to leave it here as a bit of nostalgia for my early and admittedly naive days of implementing a machine learning algorithm.  If you don't take anything else away from this I hope you gain an appreciation for how truly fascinating artificial neural networks are.  Thank you Andrew Ng for introducing me to this fascinating topic!</p>
+</div>
+<br>
+<br>
+
+
+<div id="NeuronBiophys">
+<br>
+<br>
+<h2><b>GUI for Teaching Principles of Neuronal Biophysics</b></h2>
+<img src="{% static 'personal/img/RunScreen.png' %}" class="img-rounded" style='max-height:300px;' alt="face">
+<h3><b>Source Code: <a href="https://github.com/bensuutari/Neuron_for_Teaching_GUI" target="_blank">Teaching GUI for Basic Biophysics of Neurons</a></b></h3>
+<h3><b>Tools:  </b>Python, NEURON (neuron.yale.edu), TkInter</h3>
+<h3><b>Description:</b></h3>
+<p>During the course of my PhD I taught three semesters of a course called Cellular and Molecular Neuroscience.  One thing that many students seemed to get hung up on was the biophysics of neurons.  Understanding how the the ionic concentrations, ion channels, membrane resistance, membrance capacitance and a multitude of other parameters affected the way a neuron fires action potentials is a concept that is difficult to convey on a blackboard.  For that reason I created a simple GUI interface for students to use to alter some basic biophysical properties in a simple model neuron and model how that neuron's electrophysiolgical responses would change.
+<br>
+<br>
+This computational model is powerful because it essentially allows a person with no neuroscience experience to perform electrophysiology experiments in a matter of seconds.  This simple toy model allows students (and neuroscience enthusiasts) to interactively model some arcane topics.  For example, Dravet Syndrome is caused by a mutation that results in a decrease in conductance of a particular sodium channel (NaV1.1).  Someone who has just been taught this concept in an undergraduate neuroscience lecture could open the teaching GUI, decrease the sodium conductance in the default model neuron and observe how those changes impact (relatively) realistic neurons!  Yeah, that's pretty geeky...
+<br>
+<br>
+To create this model, I used a powerful computational neuroscience program called NEURON (<a href="https://neuron.yale.edu">neuron.yale.edu</a>) which provides a really nice Python interface.  From there I created a simple interface with enough parameters to create an interesting model neuron but not too many parameters such as to overwhelm the user.  This allowed me to create a very basic, but quite realistic computational neuron with parameters that are easily modifiable by a lay user.  In most introductory neuroscience courses students are taught about the Hodgkin Huxley model of a neuron which includes only a few ion channels and their respective reversal potentials.  I chose to keep the model at a level that an undergraduate in neuroscience could easily understand.
+</p>
+</div>
+<br>
+<br>
+
+
+
+<div id="Twitterbot">
+<br>
+<br>
+<h2><b>Twitter Bot for Categorizing Sentiment of Topics</b></h2>
+<h3><b>Source Code: <a href="https://github.com/bensuutari/Twitter_Sentiment" target="_blank">Twitter Bot for Categorizing Sentiment of Topics</a></b></h3>
+<h3><b>Tools:  </b>Python, NLTK, SciKit-Learn</h3>
+<h3><b>Description:</b></h3>
+<p><b>"Data is the new electricity" - Satya Nadella</b></p>
+<p>I really like this quote.  Before I heard it I'd never really thought of the data science revolution as becoming so integral to everyday human life as I do now.  Nowadays, when I look around I see everything through this lens.  I go to buy a cup of coffee, my credit card company is gathering data on how I spend my money.  I open Google Maps and look up a how to get to Jump Into the Light(<a href="https://jumpintothelight.com/">Tool for Summarizing PDF's Using Natural Language Processing</a>) and Google is collecting data and determining how to target ads to me.  Hell, this website is now part of the vast data network that encompasses the globe and people that I'll never meet are determining what it means for them.</p>
+<br>
+<p>If data is the new electricity, then data science is the infrastructure.  It's the wires, the transformers and the outlets of the modern internet.  I want to be a part of building that infrastructure.</p>
+
+</div>
+<br>
+<br>
+
+<div id="Redditbot">
+<br>
+<br>
+<h2><b>Reddit bot for analyzing sentiment</b></h2>
+<h3><b>Source Code: <a href="https://github.com/bensuutari/Twitter_Sentiment" target="_blank">Reddit Bot for Categorizing Sentiment of Topics</a></b></h3>
+<h3><b>Tools:  </b>Python, NLTK, PRAW</h3>
+<h3><b>Description:</b></h3>
+<p>This is a summary for my Reddit bot using NLTK and PRAW
+</p>
+
+</div>
+<br>
+<br>
+
+<div id="PDFsummarize">
+<br>
+<br>
+<h2><b>Tool for Summarizing PDF's Using Natural Language Processing</b></h2>
+<h3><b>Source Code: <a href="https://github.com/bensuutari/TLDResearch" target="_blank">Tool for Summarizing PDF's Using Natural Language Processing</a></b></h3>
+<h3><b>Tools:  </b>Python, NLTK, SciKit-Learn</h3>
+<h3><b>Description:</b></h3>
+<p>Scientific articles are long and complicated.  The abstracts of scientific articles are often all that is available to the general public (due to paywalls).  While the purpose of scientific abstracts is meant to be a summary of a scientific study it is often biased toward the mohttps://www.dropbox.com/s/xfp5nt257ydatxc/Ben_Suutari_Resume.pdf?dl=0st novel parts and attention-grabbing parts of the study.  These novel parts are by definition the most interesting parts, but a tool to digest the body of a PDF and return the most referenced topics in the body of a PDF's text is useful for allowing the user to parse important information that may be more integral to the study as a whole.
+<br>
+<br>
+To address this issue, I've created a program that utilizes natural language processing (using NLTK) and machine learning to analyze the entirety of a PDF's content and return a brief, three sentence summary of the most relevant points.  This tool is useful because it can provide a secondary, more techincal abstract to the viewing public who cannot normally traverse the paywall.  Of course, this tool can be used for any PDF, but I find that it has the most relevance in parsing complicated scientific writing that is relevant to the public, but not often accessible.  This tool is also applicable to PDF's outside of scientific writing but I've designed around my own needs which are currently focused on scientific articles.
+<br>
+<br>
+This tool may also be relevant to article recommendation systems (e.g. Mendeley, Papers, EndNote) for more accurately guaging relevance to a particular user's interests.  
+<br>
+<br>
+To create this tool I used NLTK, Python and Sci-Kit Learn to intelligently parse complex writing into very brief summaries.    
+ 
+</p>
+<br>
+<br>
+
+<div id="KawaiiMe">
+<br>
+<br>
+<h2><b>KawaiiMe - Give Yourself Anime Eyes!</b></h2>
+<h3><b>Source Code: <a href="https://github.com/bensuutari/kawaiime" target="_blank">KawaiiMe</a></b></h3>
+<h3><b>Tools:  </b>Python, OpenCV</h3>
+
+<img src="{% static 'personal/img/anime_eyes.gif' %}" class="img-rounded" style='max-height:300px;' alt="face">
+<!-- image stored at: http://i.imgur.com/oHIaB5g.gifv -->
+<h3><b>Description:</b></h3>
+<p>I implemented computer vision with OpenCV(<a href="http://opencv.org/" target="_blank">http://opencv.org/</a>) to replace your <b>boring</b> old real eyes with <b>anime</b> eyes!
+</p>
+<br>
+<p>To do this I used a Haar Cascade trained on <a href="https://github.com/opencv/opencv/tree/master/data/haarcascades" target="_blank">Intel's Open Source Computer Vision Library.</a> 
+<br>
+
+<div id="biogibbs">
+<br>
+<br>
+<h2><b>Gibbs Sampler for Identifying Motifs in Genome Sequences</b></h2>
+<h3><b>Source Code: <a href="https://github.com/bensuutari/gibbssampler_motifs" target="_blank">Gibbs Sampler for Motif Identification in Bioinformatics</a></b></h3>
+<h3><b>Tools:  </b>Python, Numpy, TkInter</h3>
+<h3><b>Description:</b></h3>
+<p>This application is for finding motifs in genome sequences using a Gibbs Sampler.  I used TkInter to provide a GUI.  Below are some screenshots of the GUI in the default screen (left) and after running the application on a genome sequence with user provided input parameters: 
+</p>
+<img src="{% static 'personal/img/GibbsSamplerdefaultscreen.png' %}" class="img-rounded" style='max-height:500px;' alt="face">
+<img src="{% static 'personal/img/GibbsSamplerRunscreen.png' %}" class="img-rounded" style='max-height:500px;' alt="face">
+
+<p>This program allows you to load a text file with some genome sequences and find common motifs among the sequences.  I use a Gibbs Sampler to find motifs 
+</p> 
+
+<br>
+<br>
+
+<div id="MCMC5HT3NN">
+<br>
+<br>
+<h2><b>Markov Chain Monte Carlo Simulation for Optimization of Neural Network Parameters</b></h2>
+<h3><b>Source Code: <a href="https://github.com/bensuutari/MCMCMicrocircuit_Simulation" target="_blank">MCMC for Optimzation in a Model Hippocampal Neural Network</a></b></h3>
+<h3><b>Tools:  </b>Python, NEURON (neuron.yale.edu), Matplotlib, Numpy, 
+  <br><u>Model Neurons from: <a href="http://onlinelibrary.wiley.com/doi/10.1002/hipo.20661/abstract;jsessionid=0747522BAE4889F3A1B698D23B1B77C7.f03t03" target="_blank">Cutsuridis, V., Cobb, S. and Graham, B.P.  <i>Encoding and retrieval in a model of the hippocampal CA1 microcircuit.</i> Hippocampus, 2010. doi: 10.1002/hipo.20661</u></a></h3>
+<h3>Download the Neuron Models <a href="https://senselab.med.yale.edu/modeldb/ShowModel.cshtml?model=123815">Here</a></h3>
+<h3><b>Description:</b></h3>
+<p>This is a summary of my MCMC for tweaking synaptic parameters in my 5HT3a network simulation  
+</p> 
+
+<br>
+<br>
+
+<div id="thiswebsite">
+<br>
+<br>
+<h2><b>The Design of This Very Website</b></h2>
+<h3><b>Source Code: <a href="https://github.com/bensuutari/TLDResearch" target="_blank">bensuutari.com</a></b></h3>
+<h3><b>Tools:  </b>Python, Django</h3>
+<h3><b>Description:</b></h3>
+<p>I've spent a lot of my spare time studying machine learning algorithms and techniques but somewhere along the line I had the realization that it meant nothing without skills in the presenting what I've done.  I figured web development was the most relevant skill I could learn to present what I'm doing to the world so I learned the basics of Django.  
+</p> 
+<br>
+<p>Why Django?  Well, I wanted a tool that was created in a language that I was already familiar with (Python) that would additionally provide me with a primer for web development.  Django was perfect for this.  It allowed me to comfortably learning HTML, CSS and Javascript with assistance from Bootstrap.
+</p>
+<br>
+<p>With the help of pythonprogramming.net, StackOverflow and the Django Tutorial I was able to make this entire website.  I'm proud of that.  Feel free to have a look at how this website is created in the source code on Github.
+</p>
+
+<br>
+<br>
+
+
+
+<a href="#Top"><center><h3><b><u>Back to Top</u></b></h3></center></a>
+
+<!-- {% include "personal/includes/htmlsnippet.html" %} -->
+</div>
+
+{% endblock %}
+
+
