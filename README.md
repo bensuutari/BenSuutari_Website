@@ -1,4 +1,4 @@
-#      Realtime Anime Eyes with Open CV        #
+#      bensuutari.com        #
 
 
 This is my personal website made using Django (https://www.djangoproject.com/).
