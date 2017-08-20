@@ -9,7 +9,7 @@
       <span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#CNNfacerec">CNN for Facial Recognition</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#FacialRec">Perceptron for Facial Recognition</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#Personalized_Medicine">Personalized Medicine</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#NeuronBiophys">Neuronal Biophys GUI</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#Twitterbot">Twitter Sentiment Analysis</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#Redditbot">Reddit Sentiment Analysis</a></li>
@@ -17,6 +17,7 @@
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#KawaiiMe">KawaiiMe</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#biogibbs">Gibbs Sampler for Bioinformatics</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#MCMC5HT3NN">MCMC Neural Network</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#FacialRec">Perceptron for Facial Recognition</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#thiswebsite">This Website</a></li>
           
           
@@ -63,21 +64,24 @@
 <br>
 <p>I'd also like to point out how including dropout to the CNN affects the accuracy of a solution:</p>
 <center><img src="{% static 'personal/img/CNNaccuracy_graph_dropoutvsnodropout.png' %}" class="img-rounded" style='max-height:300px;' alt="face"></center>
-<p>Without dropout the solution converges more quickly but the final accuracy against the test set is lower.  Since dropout is essentially removing units during each epoch the solution converges slower because units that may have been optimized in a previous step may be randomly removed but the final solution is better because the network avoids overfitting on the training set.  Pretty cool!  You can read more about dropout here:<a href="https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf" target="_blank">https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf</a></p>
+<p>Without dropout the solution converges more quickly but the final accuracy against the test set is lower.  Since dropout is essentially removing units during each epoch the solution converges slower because units that may have been optimized in a previous epoch may be randomly removed in a subsequent epoch.  At the cost of slower convergence however, the final solution is better because the network avoids overfitting on the training set.  Pretty cool!  You can read more about dropout here:<a href="https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf" target="_blank">https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf</a></p>
 <br>
 
-<div id="FacialRec">
+<div id="Personalized_Medicine">
 <br>
 <br>
-<h2><b>Facial Recognition with a Simple Perceptron</b></h2>
-<h3><b>Source Code: <a href="https://github.com/bensuutari/NNfacialrecognition" target="_blank">Facial Recognition with a Simple Perceptron</a></b></h3>
-<h3><b>Tools:  </b>Python, Numpy, SciPy</h3>
+<h2><b>Personalized Medicine: Redefining Cancer Treatment (Kaggle)</b></h2>
+<h3><b>Source Code: <a href="https://github.com/bensuutari/MSK_Personalized_Medicine" target="_blank">Personalized Medicine</a></b></h3>
+<h3><b>Tools:  </b>Python, Gensim, NLTK, SciKit-Learn</h3>
 <h3><b>Description:</b></h3>
-<p>This was one of the first machine learning projects that I created.  I was taking Andrew Ng's Machine Learning course on coursera (<a href="https://www.coursera.org/learn/machine-learning">https://www.coursera.org/learn/machine-learning</a>) and I learned how to make a simple perceptron to categorize hand-written digits from the MNIST dataset.  I decided to take this simple neural network and see how successful it was at categorizing faces.  I started by trying to categorize two different faces, Cameron Diaz and Jennifer Aniston and found that it was actually 85% accurate!  This was a huge revelation to me.  I could make a network of artificial neurons to do computer vision!  In hindsight the network is quite primitive and likely overtrained but I'm going to leave it here as a bit of nostalgia for my early and admittedly naive days of implementing a machine learning algorithm.  If you don't take anything else away from this I hope you gain an appreciation for how truly fascinating artificial neural networks are.  Thank you Andrew Ng for introducing me to this fascinating topic!</p>
-</div>
-<br>
-<br>
+<p>This is my submission for the Kaggle competition: <a href="https://www.kaggle.com/c/msk-redefining-cancer-treatment" target="_blank">Personalized Medicine: Redefining Cancer Treatment</a></p>
+<p>
+The goal is to classify genetic mutations sequenced from tumors based on expert description of various genes and their mutations.  
 
+To accomplish this I first needed a way to transform the expert's text description into something that is machine-readable.  Luckily, Gensim is the perfect tool for this sort of quantification of text.  I transformed each text block into a word vector using Gensim's word2vec.  By transforming natural language into a vector format I could efficiently cluster the expert descriptions and identify classifiers by using a support vector machine from SciKit-Learn. 
+</p>
+<br>
+<br>
 
 <div id="NeuronBiophys">
 <br>
@@ -87,7 +91,7 @@
 <h3><b>Source Code: <a href="https://github.com/bensuutari/Neuron_for_Teaching_GUI" target="_blank">Teaching GUI for Basic Biophysics of Neurons</a></b></h3>
 <h3><b>Tools:  </b>Python, NEURON (neuron.yale.edu), TkInter</h3>
 <h3><b>Description:</b></h3>
-<p>During the course of my PhD I taught three semesters of a course called Cellular and Molecular Neuroscience.  One thing that many students seemed to get hung up on was the biophysics of neurons.  Understanding how the the ionic concentrations, ion channels, membrane resistance, membrance capacitance and a multitude of other parameters affected the way a neuron fires action potentials is a concept that is difficult to convey on a blackboard.  For that reason I created a simple GUI interface for students to use to alter some basic biophysical properties in a simple model neuron and model how that neuron's electrophysiolgical responses would change.
+<p>During the course of my PhD I taught three semesters of a course called Cellular and Molecular Neuroscience.  One thing that many students seemed to get hung up on was the biophysics of neurons.  Understanding how the the ionic concentrations, ion channels, membrane resistance, membrance capacitance and a multitude of other parameters affected the way a neuron fires action potentials is a concept that is difficult to convey on a blackboard.  So, I created a simple GUI interface for students to use to alter some basic biophysical properties in a simple model neuron and model how that neuron's electrophysiolgical responses would change.
 <br>
 <br>
 This computational model is powerful because it essentially allows a person with no neuroscience experience to perform electrophysiology experiments in a matter of seconds.  This simple toy model allows students (and neuroscience enthusiasts) to interactively model some arcane topics.  For example, Dravet Syndrome is caused by a mutation that results in a decrease in conductance of a particular sodium channel (NaV1.1).  Someone who has just been taught this concept in an undergraduate neuroscience lecture could open the teaching GUI, decrease the sodium conductance in the default model neuron and observe how those changes impact (relatively) realistic neurons!  Yeah, that's pretty geeky...
@@ -108,11 +112,8 @@ To create this model, I used a powerful computational neuroscience program calle
 <h3><b>Source Code: <a href="https://github.com/bensuutari/Twitter_Sentiment" target="_blank">Twitter Bot for Categorizing Sentiment of Topics</a></b></h3>
 <h3><b>Tools:  </b>Python, NLTK, SciKit-Learn</h3>
 <h3><b>Description:</b></h3>
-<p><b>"Data is the new electricity" - Satya Nadella</b></p>
-<p>I really like this quote.  Before I heard it I'd never really thought of the data science revolution as becoming so integral to everyday human life as I do now.  Nowadays, when I look around I see everything through this lens.  I go to buy a cup of coffee, my credit card company is gathering data on how I spend my money.  I open Google Maps and look up a how to get to Jump Into the Light(<a href="https://jumpintothelight.com/">Tool for Summarizing PDF's Using Natural Language Processing</a>) and Google is collecting data and determining how to target ads to me.  Hell, this website is now part of the vast data network that encompasses the globe and people that I'll never meet are determining what it means for them.</p>
+<p>This is a tool for getting real time Twitter sentiment on any topic. Simply run the script and enter the topic you'd like to examine.  The sentiment bot will pull the latest tweets and categorize them as positive or negative.  </p>
 <br>
-<p>If data is the new electricity, then data science is the infrastructure.  It's the wires, the transformers and the outlets of the modern internet.  I want to be a part of building that infrastructure.</p>
-
 </div>
 <br>
 <br>
@@ -178,8 +179,8 @@ To create this tool I used NLTK, Python and Sci-Kit Learn to intelligently parse
 <h3><b>Description:</b></h3>
 <p>This application is for finding motifs in genome sequences using a Gibbs Sampler.  I used TkInter to provide a GUI.  Below are some screenshots of the GUI in the default screen (left) and after running the application on a genome sequence with user provided input parameters: 
 </p>
-<img src="{% static 'personal/img/GibbsSamplerdefaultscreen.png' %}" class="img-rounded" style='max-height:500px;' alt="face">
-<img src="{% static 'personal/img/GibbsSamplerRunscreen.png' %}" class="img-rounded" style='max-height:500px;' alt="face">
+<img src="{% static 'personal/img/GibbsSamplerdefaultscreen.png' %}" class="img-rounded" style='max-height:600px;' alt="face">
+<img src="{% static 'personal/img/GibbsSamplerRunscreen.png' %}" class="img-rounded" style='max-height:600px;' alt="face">
 
 <p>This program allows you to load a text file with some genome sequences and find common motifs among the sequences.  I use a Gibbs Sampler to find motifs 
 </p> 
@@ -202,20 +203,26 @@ To create this tool I used NLTK, Python and Sci-Kit Learn to intelligently parse
 <br>
 <br>
 
+<div id="FacialRec">
+<br>
+<br>
+<h2><b>Facial Recognition with a Simple Perceptron</b></h2>
+<h3><b>Source Code: <a href="https://github.com/bensuutari/NNfacialrecognition" target="_blank">Facial Recognition with a Simple Perceptron</a></b></h3>
+<h3><b>Tools:  </b>Python, Numpy, SciPy</h3>
+<h3><b>Description:</b></h3>
+<p>This was one of the first machine learning projects that I created.  I was taking Andrew Ng's Machine Learning course on coursera (<a href="https://www.coursera.org/learn/machine-learning">https://www.coursera.org/learn/machine-learning</a>) and I learned how to make a simple perceptron to categorize hand-written digits from the MNIST dataset.  I decided to take this simple neural network and see how successful it was at categorizing faces.  I started by trying to categorize two different faces, Cameron Diaz and Jennifer Aniston and found that it was actually 85% accurate!  This was a huge revelation to me.  I could make a network of artificial neurons to do computer vision!  In hindsight the network is quite primitive and likely overtrained but I'm going to leave it here as a bit of nostalgia for my early and admittedly naive days of implementing a machine learning algorithm.  If you don't take anything else away from this I hope you gain an appreciation for how truly fascinating artificial neural networks are.  Thanks to Andrew Ng for introducing me to this fascinating topic!</p>
+</div>
+<br>
+<br>
+
 <div id="thiswebsite">
 <br>
 <br>
 <h2><b>The Design of This Very Website</b></h2>
-<h3><b>Source Code: <a href="https://github.com/bensuutari/TLDResearch" target="_blank">bensuutari.com</a></b></h3>
-<h3><b>Tools:  </b>Python, Django</h3>
+<h3><b>Source Code: <a href="https://github.com/bensuutari/BenSuutari_Website" target="_blank">bensuutari.com</a></b></h3>
+<h3><b>Tools:  </b>Python, Django, Bootstrap</h3>
 <h3><b>Description:</b></h3>
-<p>I've spent a lot of my spare time studying machine learning algorithms and techniques but somewhere along the line I had the realization that it meant nothing without skills in the presenting what I've done.  I figured web development was the most relevant skill I could learn to present what I'm doing to the world so I learned the basics of Django.  
-</p> 
-<br>
-<p>Why Django?  Well, I wanted a tool that was created in a language that I was already familiar with (Python) that would additionally provide me with a primer for web development.  Django was perfect for this.  It allowed me to comfortably learning HTML, CSS and Javascript with assistance from Bootstrap.
-</p>
-<br>
-<p>With the help of pythonprogramming.net, StackOverflow and the Django Tutorial I was able to make this entire website.  I'm proud of that.  Feel free to have a look at how this website is created in the source code on Github.
+<p>I created my own wesite!  I used <a href="https://www.djangoproject.com/" target="_blank">Django</a> and <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a> to accomplish this.
 </p>
 
 <br>
